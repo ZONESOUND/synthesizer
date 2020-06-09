@@ -1,0 +1,718 @@
+/* .mediaViewInfo {
+    --web-view-name: iPad – 2;
+    --web-view-id: iPad___2;
+    --web-scale-on-resize: true;
+    --web-enable-deep-linking: true;
+}
+:root {
+    --web-view-ids: iPad___2;
+} */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+#iPad___2 {
+    position: absolute;
+    width: 1024px;
+    height: 768px;
+    background-color: rgba(0,0,0,1);
+    overflow: hidden;
+    --web-view-name: iPad – 2;
+    --web-view-id: iPad___2;
+    --web-scale-on-resize: true;
+    --web-enable-deep-linking: true;
+}
+.Rectangle_8 {
+    position: absolute;
+    overflow: visible;
+    width: 208px;
+    height: 208px;
+    left: 42px;
+    top: 86px;
+}
+.Rectangle_9 {
+    position: absolute;
+    overflow: visible;
+    width: 208px;
+    height: 208px;
+    left: 286px;
+    top: 86px;
+}
+.Rectangle_10 {
+    position: absolute;
+    overflow: visible;
+    width: 208px;
+    height: 208px;
+    left: 530px;
+    top: 86px;
+}
+.Line_1 {
+    overflow: visible;
+    position: absolute;
+    width: 1024px;
+    height: 2px;
+    left: 0px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_2 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 128px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_6 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 64px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_7 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 192px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_9 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 256px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_10 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 256px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_11 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 256px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_12 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 256px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_13 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 320px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_17 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 384px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_25 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 448px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_28 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 512px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_30 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 576px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_31 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 576px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_32 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 576px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_33 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 576px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_34 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 640px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_38 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 704px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_46 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 768px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_49 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 832px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_51 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 896px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_55 {
+    overflow: visible;
+    position: absolute;
+    width: 2px;
+    height: 192px;
+    left: 960px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Rectangle_14 {
+    position: absolute;
+    overflow: visible;
+    width: 208px;
+    height: 208px;
+    left: 774px;
+    top: 86px;
+}
+.Rectangle_15 {
+    position: absolute;
+    overflow: visible;
+    width: 208px;
+    height: 208px;
+    left: 288px;
+    top: 341px;
+}
+#_____ {
+    position: absolute;
+    left: 45px;
+    top: 22px;
+    overflow: visible;
+    width: 102px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Al Bayan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    color: rgba(255,255,255,1);
+}
+.Path_1 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    position: absolute;
+    width: 50px;
+    height: 154px;
+    left: 48px;
+    top: 576px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Rectangle_17 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 154px;
+    left: 112px;
+    top: 576px;
+}
+.Rectangle_18 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 154px;
+    left: 240px;
+    top: 576px;
+}
+.Rectangle_19 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 154px;
+    left: 304px;
+    top: 576px;
+}
+.Rectangle_20 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 154px;
+    left: 368px;
+    top: 576px;
+}
+.Rectangle_21 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 154px;
+    left: 496px;
+    top: 576px;
+}
+.Rectangle_22 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 154px;
+    left: 560px;
+    top: 576px;
+}
+.Rectangle_23 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 154px;
+    left: 688px;
+    top: 576px;
+}
+.Rectangle_24 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 154px;
+    left: 752px;
+    top: 576px;
+}
+.Rectangle_25 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 154px;
+    left: 816px;
+    top: 576px;
+}
+.Rectangle_26 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 154px;
+    left: 944px;
+    top: 576px;
+}
+#AMP {
+    position: absolute;
+    left: 203px;
+    top: 312px;
+    overflow: visible;
+    width: 33px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Al Bayan;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    color: rgba(255,255,255,1);
+}
+.Rectangle_11 {
+    position: absolute;
+    overflow: visible;
+    width: 449px;
+    height: 208px;
+    left: 533px;
+    top: 341px;
+}
+.Line_69 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    position: absolute;
+    width: 168.424px;
+    height: 170.405px;
+    left: 533px;
+    top: 398px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_70 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    position: absolute;
+    width: 58.565px;
+    height: 68.245px;
+    left: 681px;
+    top: 398px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_71 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    position: absolute;
+    width: 166.14px;
+    height: 121.643px;
+    left: 832px;
+    top: 447px;
+    transform: matrix(1,0,0,1,0,0);
+}
+#ADSR {
+    position: absolute;
+    left: 943px;
+    top: 312px;
+    overflow: visible;
+    width: 40px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Al Bayan;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    color: rgba(255,255,255,1);
+}
+.Rectangle_30 {
+    position: absolute;
+    overflow: visible;
+    width: 42px;
+    height: 208px;
+    left: 125px;
+    top: 341px;
+}
+.Rectangle_31 {
+    position: absolute;
+    overflow: visible;
+    width: 42px;
+    height: 14px;
+    left: 125px;
+    top: 449px;
+}
+#PITCH {
+    position: absolute;
+    left: 126px;
+    top: 312px;
+    overflow: visible;
+    width: 44px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Al Bayan;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    color: rgba(255,255,255,1);
+}
+.Rectangle_32 {
+    position: absolute;
+    overflow: visible;
+    width: 42px;
+    height: 208px;
+    left: 125px;
+    top: 341px;
+}
+.Rectangle_33 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 60px;
+    height: 32px;
+    left: 125px;
+    top: 449px;
+}
+.Line_73 {
+    overflow: visible;
+    position: absolute;
+    width: 37px;
+    height: 2px;
+    left: 127.5px;
+    top: 456.5px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Rectangle_34 {
+    position: absolute;
+    overflow: visible;
+    width: 42px;
+    height: 208px;
+    left: 198px;
+    top: 341px;
+}
+.Rectangle_35 {
+    position: absolute;
+    overflow: visible;
+    width: 42px;
+    height: 14px;
+    left: 198px;
+    top: 449px;
+}
+.Rectangle_36 {
+    position: absolute;
+    overflow: visible;
+    width: 42px;
+    height: 208px;
+    left: 198px;
+    top: 341px;
+}
+.Rectangle_37 {
+    position: absolute;
+    overflow: visible;
+    width: 42px;
+    height: 14px;
+    left: 198px;
+    top: 449px;
+}
+.Line_75 {
+    overflow: visible;
+    position: absolute;
+    width: 39px;
+    height: 2px;
+    left: 198.5px;
+    top: 456.5px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Rectangle_38 {
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 50px;
+    left: 47px;
+    top: 348px;
+}
+.Rectangle_41 {
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 50px;
+    left: 47px;
+    top: 420px;
+}
+.Rectangle_42 {
+    position: absolute;
+    overflow: visible;
+    width: 50px;
+    height: 50px;
+    left: 47px;
+    top: 491px;
+}
+.Polygon_1 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: hidden;
+    position: absolute;
+    width: 39px;
+    height: 36px;
+    left: 61px;
+    top: 364px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Polygon_2 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: hidden;
+    position: absolute;
+    width: 24px;
+    height: 20px;
+    transform: matrix(1,0,0,1,59,437) rotate(180deg);
+    transform-origin: center;
+    left: 0px;
+    top: 0px;
+}
+.Polygon_3 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: hidden;
+    position: absolute;
+    width: 13px;
+    height: 11px;
+    transform: matrix(1,0,0,1,77,522) rotate(180deg);
+    transform-origin: center;
+    left: 0px;
+    top: 0px;
+}
+.Polygon_4 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: hidden;
+    position: absolute;
+    width: 31px;
+    height: 29px;
+    left: 55px;
+    top: 505px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_76 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    position: absolute;
+    width: 36.414px;
+    height: 36.414px;
+    left: 62.5px;
+    top: 510.5px;
+    transform: matrix(1,0,0,1,0,0);
+}
+#WAVEFORM {
+    position: absolute;
+    left: 899px;
+    top: 57px;
+    overflow: visible;
+    width: 84px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Al Bayan;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    color: rgba(255,255,255,1);
+}
+#ARP {
+    position: absolute;
+    left: 57px;
+    top: 312px;
+    overflow: visible;
+    width: 29px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Al Bayan;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    color: rgba(255,255,255,1);
+}
+.Line_77 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    position: absolute;
+    width: 226px;
+    height: 20px;
+    left: 42px;
+    top: 190px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_78 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    position: absolute;
+    width: 226px;
+    height: 20px;
+    left: 286px;
+    top: 190px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_79 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    position: absolute;
+    width: 226px;
+    height: 20px;
+    left: 530px;
+    top: 190px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_80 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    position: absolute;
+    width: 226px;
+    height: 20px;
+    left: 774px;
+    top: 190px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Line_81 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    position: absolute;
+    width: 130px;
+    height: 20px;
+    left: 720px;
+    top: 447px;
+    transform: matrix(1,0,0,1,0,0);
+}
+.Ellipse_2 {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    position: absolute;
+    overflow: visible;
+    width: 30px;
+    height: 30px;
+    left: 423px;
+    top: 408px;
+}
+#LOW_PASS_FILTER {
+    position: absolute;
+    left: 375px;
+    top: 310px;
+    overflow: visible;
+    width: 122px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Al Bayan;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    color: rgba(255,255,255,1);
+}
