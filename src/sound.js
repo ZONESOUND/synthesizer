@@ -1,14 +1,18 @@
 import {EnvelopeNode} from './envelop';
+import {Keyboard} from './keyboard';
+import * as Synth from './soundusage';
+
 let context;
-let oscillator, envelope, filter, gain;
+let oscillator, envelope, filter, gain, compressor;
+let keyboard;
 
 function initWebaudio() {
     try {
         // Fix up for prefixing
-        window.AudioContext = window.AudioContext||window.webkitAudioContext;
+        //window.AudioContext = window.AudioContext||window.webkitAudioContext;
         //window.AudioContext.prototype.createEnvelope = createEnvelope;
-        
-        context = new AudioContext();
+        //context = new AudioContext();
+        context = Synth.initContext();
         //AudioNode.
     }
     catch(e) {
@@ -16,24 +20,32 @@ function initWebaudio() {
         console.log(e);
         return false;
     }
-    initSound();
+    //initSound();
     return true;
 }
 
 function initSound() {
-    oscillator = newOsc('sine', 440);
+    keyboard = new Keyboard($('body'), 'C4', 1);
+    
+
+    oscillator = Synth.newOsc('sine', 440);
     oscillator.start();
-
-    filter = newFilter(440);
-
     envelope = new EnvelopeNode(context);
+    oscillator.connect(envelope.input);
 
-    gain = newGain(1);
+    filter = Synth.newFilter(440);
 
-    oscillator.connect(filter);
-    filter.connect(envelope.input);
-    envelope.connect(gain);
-    gain.connect(context.destination);
+
+    gain = Synth.newGain(1);
+    compressor = Synth.newCompressor();
+    oscillator.connect(envelope.input);
+    envelope.connect(filter);
+    keyboard.connect(filter);
+    filter.connect(gain);
+    
+    gain.connect(compressor);
+    compressor.connect(context.destination);
+    
 }
 
 $('#wave-type').change(function() {
@@ -86,34 +98,7 @@ function setValue(obj, value, time) {
     obj.setValueAtTime(value, time);
 }
 
-function newFilter(frequency, dest=null) {
-    let f = context.createBiquadFilter();
-    f.type = "lowpass";
-    f.frequency.setValueAtTime(frequency, context.currentTime);
-    return f;
-}
 
-function newOsc(type, frequency, dest=null) {
-    let o = context.createOscillator();
-    o.type = type;
-    o.frequency.setValueAtTime(frequency, context.currentTime);
-    if (dest) o.connect(dest);
-    return o;
-}
-
-function newGain(value, dest=null) {
-    let g = context.createGain();
-    g.gain.value = value;
-    if (dest) g.connect(dest);
-    return g;
-}
-
-function newConstant(offset, dest=null) {
-    let c = context.createConstantSource();
-    c.offset = offset;
-    if (dest) c.connect(dest);
-    return c;
-}
 
 
 

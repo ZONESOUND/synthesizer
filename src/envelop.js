@@ -46,8 +46,10 @@ export class EnvelopeNode{
     }
 
     rampToSustain() {
-        console.log('decay~', this.input.gain.value);
         let now = this.context.currentTime;
+        // console.log('decay~', this.input.gain.value, this.sustainValue, now);
+        // this.input.gain.cancelScheduledValues(now);
+        // this.input.gain.setValueAtTime(this.input.gain.value, now);
         this.input.gain.linearRampToValueAtTime(this.sustainValue, now+this.decayTime);
         this.decayTimeout = null;
     }

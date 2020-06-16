@@ -2,14 +2,16 @@
 import $ from 'jquery'; 
 import {initWebaudio, initSound, triggerPlay, triggerStop} from './sound';
 
-initWebaudio();
+if (initWebaudio()) {
+    $('#start').click(function() {
+        console.log('start');
+        initSound();
+        $('#start').hide();
+        $('#content').attr('hidden', false);
+    });
+}
 //initSound();
-$('#start').click(function() {
-    console.log('start');
-    initSound();
-    $('#start').hide();
-    $('#content').attr('hidden', false);
-});
+
 
 $('#play').mousedown(function() {
     triggerPlay();

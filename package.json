@@ -7,6 +7,8 @@
     "test": "test"
   },
   "scripts": {
+    "deploy": "npm run predeploy && ./gh-deploy dist",
+    "predeploy": "npm run build",
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --host 0.0.0.0 --config webpack.dev.config.babel.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
