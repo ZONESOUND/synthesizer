@@ -5,7 +5,7 @@
 export class EnvelopeNode{
     constructor(context, config) {
         this.context = context;
-        console.log(this.context);
+        //console.log(this.context);
         this.input = context.createGain();
         this.input.gain.value = 0;
         
@@ -36,7 +36,7 @@ export class EnvelopeNode{
     }
       
     triggerStart () {
-        console.log('triggerStart', this.input.gain.value);
+        //console.log('triggerStart', this.input.gain.value);
         let now = this.context.currentTime;
         this.input.gain.cancelScheduledValues(now);
         this.input.gain.setValueAtTime(this.input.gain.value, now);
@@ -48,14 +48,14 @@ export class EnvelopeNode{
     rampToSustain() {
         let now = this.context.currentTime;
         // console.log('decay~', this.input.gain.value, this.sustainValue, now);
-        // this.input.gain.cancelScheduledValues(now);
-        // this.input.gain.setValueAtTime(this.input.gain.value, now);
+        this.input.gain.cancelScheduledValues(now);
+        this.input.gain.setValueAtTime(this.input.gain.value, now);
         this.input.gain.linearRampToValueAtTime(this.sustainValue, now+this.decayTime);
         this.decayTimeout = null;
     }
 
     triggerEnd () {
-        console.log('triggerEnd', this.input.gain.value);
+        //console.log('triggerEnd', this.input.gain.value);
         let now = this.context.currentTime;
         if (this.decayTimeout) clearTimeout(this.decayTimeout);
         this.input.gain.cancelScheduledValues(now);

@@ -10,40 +10,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js'></script>
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </head>
 <body class="containter my-5">
 
   <button id="start" type="button" class="btn btn-large btn-block btn-light">START</button>
   <div id="content" hidden>
-    <button id="play" type="button" class="btn btn-block btn-large btn-light">PLAY</button>
-    <div class="btn-group" role="group" id="piano">
-        <button type="button" class="btn btn-secondary">220</button>
-        <button type="button" class="btn btn-secondary">440</button>
-        <button type="button" class="btn btn-secondary">880</button>
+    <div id="waveContainer"></div>
+    <div id="controlContainer">
+        <div id="rangeContainer">
+            <input type="range" min="0" max="100" value="0" step="1" class="slider" id="pitch">
+            <input type="range" min="0" max="1" value="0.5" step="0.001" class="slider" id="amplitude">
+            <input id="arp" type="checkbox" data-toggle="toggle">
+        </div>
+        <div id="p5Container"></div>
     </div>
-    <div class="form-group">
-        <label for="wave-type">Wave</label>
-        <select class="form-control" id="wave-type">
-          <option id="sine">sine</option>
-          <option id="square">square</option>
-          <option id="sawtooth">sawtooth</option>
-          <option id="triangle">triangle</option>
-        </select>
-        <label for="filter-frequency">FILTER frequency</label>
-        <input id="filter-frequency" type="number" class="form-control" placeholder="filter frequency" value=440>
-        <label for="attackTime">A</label>
-        <input id="attackTime" type="number" class="form-control envelope" placeholder="attack time" value=0.1>
-        <label for="decayTime">D</label>
-        <input id="decayTime" type="number" class="form-control envelope" placeholder="decay time" value=0.1>
-        <label for="sustainValue">S</label>
-        <input id="sustainValue" type="number" class="form-control envelope" placeholder="sustain Value" value=0.2>
-        <label for="releaseTime">R</label>
-        <input id="releaseTime" type="number" class="form-control envelope" placeholder="release Time" value=0.1>
-        <label for="amplitude">amplitude</label>
-        <input id="amplitude" type="number" class="form-control envelope" placeholder="amplitude" value=1>
-        <label for="pitch">pitch</label>
-        <input id="pitch" type="number" class="form-control" placeholder="pitch" value=0>
-    </div>
+    
+    
+    
   </div>
 </body>
 </html>

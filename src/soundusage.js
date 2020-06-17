@@ -23,7 +23,7 @@ function newOsc(type, frequency, dest=null) {
 
 function newGain(value, dest=null) {
     let g = context.createGain();
-    g.gain.value = value;
+    g.gain.setValueAtTime(value, context.currentTime);
     if (dest) g.connect(dest);
     return g;
 }

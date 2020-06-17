@@ -1,7 +1,8 @@
 import './keyboard.css';
 import * as Synth from './soundusage';
 import {EnvelopeNode} from './envelop';
-
+import {waveType} from './wave';
+import {adsrConfig} from './controlui';
 
 export class Keyboard {
 
@@ -15,11 +16,14 @@ export class Keyboard {
         this.keyNum = octaveNum*12;
         this.htmlParent = htmlParent;
         this.initKeys();
-        
+        this.arp = false;
+        this.arpIntT = 500;
+        this.setKeyArp();
+        $('#arp').change(this.arpChange.bind(this));
     }
 
     initKeys() {
-        console.log('init key');
+        //console.log('init key');
         let $ul = $("<ul></ul>");
         this.htmlParent.append($ul);
         let startHalf = calcHalfNote(this.startNote[0])
@@ -30,11 +34,53 @@ export class Keyboard {
         }
     }
 
+    arpChange() {
+        this.arp = !this.arp;
+        if (this.arp) {
+            
+            this.arpSet = new Set();
+            this.arpId = 0;
+            this.arpInterval = setInterval(this.playArpSet.bind(this), this.arpIntT);
+        } else {
+            clearInterval(this.arpInterval);
+        }
+    }
+
+    playArpSet() {
+        let arr = [...this.arpSet]
+        if (arr.length > 0) {
+            this.arpId %= arr.length;
+            this.keys[arr[this.arpId]].play(this.arpIntT/2.);
+            this.arpId++;
+        }
+    }
+
+    addArpSet(i) {
+        if (!this.arp) return;
+        this.arpSet.add(i);
+    }
+
+    setKeyArp() {
+        for (let i=0; i<this.keyNum; i++) {
+            this.keys[i].setArp(this.addArpSet.bind(this));
+            //this.keys[i].setArp();
+        }
+    }
+
     connect(audioNode) {
         for (let i=0; i<this.keyNum; i++) {
             this.keys[i].connect(audioNode);
         }
     }
+
+    set (audioParam, val) {
+        let now = Synth.context.currentTime+0.01;
+        for (let i=0; i<this.keyNum; i++) {
+            eval(`this.keys[i].${audioParam}.linearRampToValueAtTime(${val}, now)`);
+            //this.keys[i].connect(audioNode);
+        }
+    }
+
 
     whiteOrBlack(half) {
         half %= 12;
@@ -52,8 +98,9 @@ export class Keyboard {
 class Key {
 
     constructor(freq, ind) {
-        console.log(freq, '#key-'+ind);
+        //console.log(freq, '#key-'+ind);
         this.freq = freq;
+        this.ind = ind;
         $('#key-'+ind).mousedown(this.mousedown.bind(this));
         $('#key-'+ind).mouseup(this.mouseup.bind(this));
         $('#key-'+ind).mouseout(this.mouseup.bind(this));
@@ -81,8 +128,13 @@ class Key {
         this.envelope.connect(audioNode);
     } 
 
+    setArp(arpCallback) {
+        this.arpCallback = arpCallback;
+    }
+    
     getNowEnvelope() {
-        $('.envelope').each(this.changeEnvelopeAttr.bind(this));
+        this.envelope.initADSR(adsrConfig);
+        //$('.envelope').each(this.changeEnvelopeAttr.bind(this));
     }
 
     changeEnvelopeAttr(idx, e) {
@@ -91,13 +143,28 @@ class Key {
     }
 
     mousedown() {
-        console.log(this.freq, 'down');
-        this.getNowEnvelope();
-        this.envelope.triggerStart();
+        this.arpCallback(this.ind);
+        this.play();
     }
 
     mouseup() {
-        console.log(this.freq, 'up');
+        this.stop();
+    }
+
+    play(selfEnd = null) {
+        //console.log(this.freq, 'down');
+        this.getNowEnvelope();
+        //this.oscillator.detune.value = $('#pitch').val();
+        this.oscillator.type = waveType;
+        //console.log(waveType);
+        this.envelope.triggerStart();
+        if (selfEnd) {
+            setTimeout(this.stop.bind(this), selfEnd);
+        }
+    }
+
+    stop() {
+        //console.log(this.freq, 'up');
         this.envelope.triggerEnd();
     }
 }
