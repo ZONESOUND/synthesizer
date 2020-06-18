@@ -1,6 +1,7 @@
 import './waveUI.css';
 export let waveType = '';
 
+console.log('in wave.js');
 let sinew;
 let sine = function(p) {
 	sinew = new SineWave(p, changeWave);

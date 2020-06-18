@@ -25,6 +25,7 @@ function initWebaudio() {
 }
 
 function initSound() {
+    console.log('init sound');
     keyboard = new Keyboard($('body'), 'C4', 2+5/12);
 
     // oscillator = Synth.newOsc('sine', 440);

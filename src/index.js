@@ -13,13 +13,3 @@ if (initWebaudio()) {
         $('#content').attr('hidden', false);
     });
 }
-//initSound();
-
-
-$('#play').mousedown(function() {
-    triggerPlay();
-})
-
-$('#play').mouseup(function() {
-    triggerStop();
-})
