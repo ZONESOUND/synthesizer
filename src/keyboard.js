@@ -20,6 +20,7 @@ export class Keyboard {
         this.arpIntT = 500;
         this.setKeyArp();
         $('#arp').change(this.arpChange.bind(this));
+        resizeKeyboard();
     }
 
     initKeys() {
@@ -192,4 +193,17 @@ function noteToFreq(note) {
 
 function calcFreq(fromFreq, upHalf) {
     return fromFreq*(2**(upHalf/12));
+}
+
+window.addEventListener("resize", resizeKeyboard);
+function resizeKeyboard() {
+    let w = window.innerWidth;
+    console.log('w', w);
+    $('.white').css('width', w/20);
+    $('.white').css('height', w/5);
+    console.log($('.white').css('width'), $('.white-wide').css('margin-left'));
+    $('.white-wide').css('margin-left', -w/80);
+    $('.black').css('margin-left', -w/80);
+    $('.black').css('width', w/40);
+    $('.black').css('height', w/10);
 }

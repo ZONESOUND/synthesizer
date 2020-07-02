@@ -16,8 +16,8 @@
 }
   
 .slider {
-    /* transform-origin: top left;
-    transform: translateY(100%) rotate(0deg); */
+    transform-origin: top left;
+    transform: translateY(100%) rotate(270deg);
     -webkit-appearance: none;
     
     width: 20%; 
@@ -30,7 +30,7 @@
 }
 
 #amplitude {
-    /* transform: translateX(-60%) translateY(100%) rotate(0deg); */
+    transform: translateX(-60%) translateY(100%) rotate(270deg);
     /* margin-top: -20%; */
     /* margin-bottom: -20%; */
 }

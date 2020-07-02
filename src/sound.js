@@ -115,9 +115,9 @@ function changeFilter(filterFreq, Q) {
     //console.log(filterFreq);
     //filter.frequency.setValueAtTime(filterFreq, context.currentTime);
     //filter.frequency.value = filterFreq;
-    filter.frequency.linearRampToValueAtTime(filterFreq, context.currentTime+0.01);
+    filter.frequency.linearRampToValueAtTime(filterFreq, context.currentTime+0.02);
     //console.log(Q);
-    filter.Q.linearRampToValueAtTime(Q, context.currentTime+0.01);
+    filter.Q.linearRampToValueAtTime(Q, context.currentTime+0.02);
     //console.log(filter.frequency);
 }
 
