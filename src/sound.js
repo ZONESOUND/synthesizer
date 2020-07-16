@@ -77,23 +77,6 @@ function changeArp(arp) {
 //     eval(`envelope.${$(this).attr('id')}=${$(this).val()}`);
 // })
 
-$('#amplitude').change(function() {
-    //console.log($(this).val());
-    //gain.gain.setValueAtTime($(this).val(), context.currentTime);
-})
-
-$('#amplitude').on('input', ()=>{
-    changeAmp($('#amplitude').val());
-})
-
-$('#pitch').change(function() {
-    //console.log('ch');
-    //keyboard.set('oscillator.detune', $(this).val());
-    //oscillator.detune.setValueAtTime($(this).val(), context.currentTime);
-})
-
-$('#pitch').on('input', ()=> {changePitch($('#pitch').val());
-});
 
 
 

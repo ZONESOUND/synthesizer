@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>my webpack app</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -13,11 +13,16 @@
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </head>
-<body class="containter my-5">
-
-  <button id="start" type="button" class="btn btn-large btn-block btn-light">START</button>
+<body class="containter">
+  <div id="firstPage">
+    <div id="title">學 +/- 合成器</div>
+    <div id="startwrap">
+      <button id="start" type="button" class="btn btn-warning">START</button>
+    </div>
+  </div>
+  
   <div id="content" hidden>
-    <div id="title">合成器</div>
+    <div id="innertitle">合成器</div>
     <div id="waveContainer"></div>
     <div id="controlContainer">
         <!-- <div id="rangeContainer">

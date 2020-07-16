@@ -74,7 +74,7 @@ export class Keyboard {
         }
     }
 
-    set (audioParam, val) {
+    set(audioParam, val) {
         let now = Synth.context.currentTime+0.01;
         for (let i=0; i<this.keyNum; i++) {
             eval(`this.keys[i].${audioParam}.linearRampToValueAtTime(${val}, now)`);
@@ -146,11 +146,13 @@ class Key {
     }
 
     mousedown() {
+        $('#key-'+this.ind).addClass('active');
         this.arpCallback(this.ind);
         this.play();
     }
 
     mouseup() {
+        $('#key-'+this.ind).removeClass('active');
         this.stop();
     }
 

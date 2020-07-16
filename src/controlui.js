@@ -74,15 +74,15 @@ let adsr = function(p) {
     }
 
     let mouseDragged = function() {
-        if (attack.drag) {
+        if (attack.drag && attack.checkIn(p.mouseX, p.mouseY, 80)) {
             adsrConfig.attackTime = minmax(width2time(p.mouseX), 0, widthSec-adsrConfig.decayTime-sustainTime-adsrConfig.releaseTime);
             adsrConfig.attackValue = minmax(height2val(p.mouseY), 0, 1);
         }
-        else if (decay.drag) {
+        else if (decay.drag && decay.checkIn(p.mouseX, p.mouseY, 80)) {
             adsrConfig.decayTime = minmax(width2time(p.mouseX) - adsrConfig.attackTime, 0, widthSec-adsrConfig.attackTime-sustainTime-adsrConfig.releaseTime);
             adsrConfig.sustainValue = minmax(height2val(p.mouseY), 0, 1);
         }
-        else if (release.drag) {
+        else if (release.drag && release.checkIn(p.mouseX, p.mouseY, 80)) {
             adsrConfig.releaseTime = minmax(width2time(p.mouseX) - adsrConfig.attackTime - adsrConfig.decayTime, 0, widthSec-adsrConfig.attackTime-sustainTime-adsrConfig.decayTime);
         }
         //let distance = p.dist(p.mouseX, p.mouseY, attack.x, attack.y);  
@@ -167,7 +167,6 @@ let filter = function(p) {
         filterFreq = minmax(width2Freq(p.mouseX), freqMin, freqMax);
         Q = p.map(p.mouseY, 0, p.height, 100, 0.001);
         changeFilter(filterFreq, Q);
-
     }
 
     

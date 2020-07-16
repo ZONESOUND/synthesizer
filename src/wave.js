@@ -1,6 +1,10 @@
 import './waveUI.css';
 import {COLOR, UI} from './color';
-export let waveType = '';
+export let waveType = 'sine';
+// export function getWaveType() {
+// 	//alert(waveType);
+// 	return waveType;
+// }
 
 console.log('in wave.js');
 let sinew;
@@ -24,12 +28,14 @@ let saw = function(p) {
 }
 
 function changeWave(name) {
+
+	waveType = name;
 	squw.isPlay = false;
 	triw.isPlay = false;
 	saww.isPlay = false;
 	sinew.isPlay = false;
-	waveType = name;
-	// console.log('change wave to ', name);
+	//alert(waveType);
+	//console.log('change wave to ', name);
 }
 
 class WaveTemplate {
@@ -102,8 +108,8 @@ class WaveTemplate {
 
 
 	mouseClicked() {
-		if (this.clickCallback) this.clickCallback(this.isPlay ? '' : this.name);
-		this.isPlay = !this.isPlay;
+		if (this.clickCallback) this.clickCallback(this.name);
+		this.isPlay = true;
 		//send to other!
 	}
 
@@ -137,8 +143,8 @@ class SineWave extends WaveTemplate {
 		this.bgcolor = COLOR.red;
 		this.calcWave();
 		this.moving = true;
+		this.isPlay = true;
 	}
-
 
 	calcWave() {
 		// Increment theta (try different values for
