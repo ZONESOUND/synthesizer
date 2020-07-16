@@ -51,7 +51,24 @@ let adsr = function(p) {
         release.draw(releaseX, p.height, w);
     }
 
+    let touchStarted = function() {
+        attack.drag = false;
+        decay.drag = false;
+        release.drag = false;
+        for (var i = 0; i < p.touches.length; i++) {
+            if (attack.checkIn(p.touches[i].x, p.touches[i].y, 30)) {
+                attack.drag = true;
+            }
     
+            if (decay.checkIn(p.touches[i].x, p.touches[i].y, 30)) {
+                decay.drag = true;
+            } 
+    
+            if (release.checkIn(p.touches[i].x, p.touches[i].y, 30)) {
+                release.drag = true;
+            } 
+        }
+    }
 
     let mousePressed = function() {
         if (attack.checkIn(p.mouseX, p.mouseY, 30)) {
@@ -70,6 +87,23 @@ let adsr = function(p) {
             release.drag = true;
         } else {
             release.drag = false;
+        }
+    }
+
+    let touchMoved = function() {
+        
+        for (var i = 0; i < p.touches.length; i++) {
+            if (attack.drag && attack.checkIn(p.touches[i].x, p.touches[i].y, 80)) {
+                adsrConfig.attackTime = minmax(width2time(p.touches[i].x), 0, widthSec-adsrConfig.decayTime-sustainTime-adsrConfig.releaseTime);
+                adsrConfig.attackValue = minmax(height2val(p.touches[i].y), 0, 1);
+            }
+            else if (decay.drag && decay.checkIn(p.touches[i].x, p.touches[i].y, 80)) {
+                adsrConfig.decayTime = minmax(width2time(p.touches[i].x) - adsrConfig.attackTime, 0, widthSec-adsrConfig.attackTime-sustainTime-adsrConfig.releaseTime);
+                adsrConfig.sustainValue = minmax(height2val(p.touches[i].y), 0, 1);
+            }
+            else if (release.drag && release.checkIn(p.touches[i].x, p.touches[i].y, 100)) {
+                adsrConfig.releaseTime = minmax(width2time(p.touches[i].x) - adsrConfig.attackTime - adsrConfig.decayTime, 0, widthSec-adsrConfig.attackTime-sustainTime-adsrConfig.decayTime);
+            }
         }
     }
 
@@ -92,7 +126,8 @@ let adsr = function(p) {
         //console.log(p.mouseX, p.mouseY, width2time(p.mouseX));
     }
 
-    p.touchStarted = mousePressed;
+    p.touchMoved = touchMoved;
+    p.touchStarted = touchStarted;
     p.mousePressed = mousePressed;
     p.mouseDragged = mouseDragged;
 
@@ -159,6 +194,19 @@ let filter = function(p) {
         p.ellipse(freqw, p.map(Q, 0.001, 100, p.height, 0), 10);
     }
 
+    p.touchMoved = function() {
+        if (!press) return;
+        var i=0;
+        while(!touchIn(p.touches[i].x, p.touches[i].y) && i < p.touches.length) {
+            i++;
+        }
+        //alert(i);
+        if (i == p.touches.length) return;
+        filterFreq = minmax(width2Freq(p.touches[i].x), freqMin, freqMax);
+        Q = p.map(p.touches[i].y, 0, p.height, 100, 0.001);
+        changeFilter(filterFreq, Q);
+        
+    }
 
     p.mouseDragged = function() {
         if (!press) return;
@@ -169,7 +217,9 @@ let filter = function(p) {
         changeFilter(filterFreq, Q);
     }
 
-    
+    let touchIn = function(x, y) {
+        return x >=0 && x <= p.width && y >=0 && y <=p.height;
+    }
 
     let width2Freq = function(w) {
         return p.map(w, 0, p.width, freqMin, freqMax);
@@ -240,15 +290,26 @@ let otherfunc = function(p) {
             changePitch(pitchSlider.getVal());
         }
     }
+
     p.touchStarted = function() {
-        if (ampSlider.mousePressed()) {
+        if (ampSlider.touchStarted()) {
             changeAmp(ampSlider.getVal());
         }
-        if (pitchSlider.mousePressed()) {
+        if (pitchSlider.touchStarted()) {
             changePitch(pitchSlider.getVal());
         }
     }
-    //p.touchStarted = mousePressed;
+
+    p.touchMoved = function() {
+        if (ampSlider.touchMoved()) {
+            changeAmp(ampSlider.getVal());
+        }
+        if (pitchSlider.touchMoved()) {
+            changePitch(pitchSlider.getVal());
+        }
+    }
+
+    //p.touchStarted = touchStarted;
     p.mousePressed = mousePressed;
     p.mouseOut = mouseOut;
     p.touchEnded = mouseOut;
@@ -349,16 +410,27 @@ class Slider {
         else return false;
     }
 
+    touchStarted() {
+        for (var i=0; i<this.p.touches.length; i++) {
+           if (this.checkInSlider(this.p.touches[i].x, this.p.touches[i].y)) {
+                this.setMoveh(this.p.touches[i].y);
+                return true;
+            }
+        }
+        return false;
+    }
+
     mousePressed() {
-        if (this.checkInMove(this.p.mouseX, this.p.mouseY)) {
-            this.press = true;
-        } else if (this.checkInSlider(this.p.mouseX, this.p.mouseY)) {
+        //return false;
+        // if (this.checkInMove(this.p.mouseX, this.p.mouseY)) {
+        //     this.press = true;
+        // } else 
+        if (this.checkInSlider(this.p.mouseX, this.p.mouseY)) {
             this.press = true;
             this.setMoveh(this.p.mouseY);
             return true;
-        } else {
-            this.press = false;
         }
+        this.press = false;
         return false;
     };
 
@@ -367,9 +439,21 @@ class Slider {
     };
 
     mouseDragged() {
+        //return false;
         if (!this.press) return false;
         this.setMoveh(this.p.mouseY);
         return true;
+    }
+
+    touchMoved() {
+        //if (!this.press) return false;
+        for (var i=0; i<this.p.touches.length; i++) {
+            if (this.checkInSlider(this.p.touches[i].x, this.p.touches[i].y)) {
+                this.setMoveh(this.p.touches[i].y);
+                return true;
+            }
+        }
+        return false;
     }
 
     setMoveh(mouseY) {
