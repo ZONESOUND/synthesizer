@@ -200,9 +200,12 @@ function calcFreq(fromFreq, upHalf) {
 }
 
 window.addEventListener("resize", resizeKeyboard);
+
 function resizeKeyboard() {
     let w = window.innerWidth;
     console.log('w', w);
+    //$('ul').css('margin-left', -w*1/20);
+    //$('ul').css('margin-right', -w*1/20);
     $('.white').css('width', w/20);
     $('.white').css('height', w/5);
     console.log($('.white').css('width'), $('.white-wide').css('margin-left'));

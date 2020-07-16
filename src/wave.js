@@ -63,7 +63,7 @@ class WaveTemplate {
 
 	initDraw() {
 		
-		this.width = this.p.windowWidth / 5;
+		this.width = this.p.windowWidth / UI.widthDiv;
 		this.w = this.width + this.xspacing;
 		this.amplitude = this.width * 0.5 * 0.7;
 		//console.log('am', this.amplitude);
@@ -114,8 +114,8 @@ class WaveTemplate {
 	}
 
 	windowResized() {
-		this.p.resizeCanvas(this.p.windowWidth / 5, this.p.windowWidth / 5);
-		this.width = this.p.windowWidth / 5;
+		this.p.resizeCanvas(this.p.windowWidth / UI.widthDiv, this.p.windowWidth / UI.widthDiv);
+		this.width = this.p.windowWidth / UI.widthDiv;
 	}
 
 	renderWave() {

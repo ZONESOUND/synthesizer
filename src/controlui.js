@@ -14,7 +14,7 @@ let adsr = function(p) {
     let attack, decay, release;
     let sustainTime = 0.5;
     p.setup = function() {
-        p.createCanvas(p.windowWidth*2 / 5 + p.windowWidth*0.05, p.windowWidth / 5);
+        p.createCanvas(p.windowWidth*2 / UI.widthDiv + p.windowWidth*0.05, p.windowWidth / UI.widthDiv);
         attack = new Draggable(p);
         decay = new Draggable(p);
         release = new Draggable(p);
@@ -130,7 +130,10 @@ let adsr = function(p) {
     p.touchStarted = touchStarted;
     p.mousePressed = mousePressed;
     p.mouseDragged = mouseDragged;
-
+    
+    p.windowResized = function() {
+        p.resizeCanvas(p.windowWidth*2 / UI.widthDiv + p.windowWidth*0.05, p.windowWidth / UI.widthDiv);
+	}
     let time2width = function(time) {
         return time / widthSec * p.width;
     }
@@ -157,7 +160,7 @@ let filter = function(p) {
     let canvas;
     let press = false;
     p.setup = function() {
-        canvas = p.createCanvas(p.windowWidth / 5, p.windowWidth / 5);
+        canvas = p.createCanvas(p.windowWidth / UI.widthDiv, p.windowWidth / UI.widthDiv);
         p.background(0);
         //change to only drag canvas
         //canvas.mouseDragged(mouseDragged);
@@ -217,6 +220,10 @@ let filter = function(p) {
         changeFilter(filterFreq, Q);
     }
 
+    p.windowResized = function() {
+        p.resizeCanvas(p.windowWidth / UI.widthDiv, p.windowWidth / UI.widthDiv);
+	}
+
     let touchIn = function(x, y) {
         return x >=0 && x <= p.width && y >=0 && y <=p.height;
     }
@@ -245,7 +252,7 @@ let otherfunc = function(p) {
     let canvas;
     let press = false;
     p.setup = function() {
-        canvas = p.createCanvas(p.windowWidth / 5, p.windowWidth / 5);
+        canvas = p.createCanvas(p.windowWidth / UI.widthDiv, p.windowWidth / UI.widthDiv);
         p.background(0);
         //change to only drag canvas
         //canvas.mouseDragged(mouseDragged);
@@ -313,6 +320,14 @@ let otherfunc = function(p) {
     p.mousePressed = mousePressed;
     p.mouseOut = mouseOut;
     p.touchEnded = mouseOut;
+
+    p.windowResized = function() {
+        p.resizeCanvas(p.windowWidth / UI.widthDiv, p.windowWidth / UI.widthDiv);
+        let w = (p.width-UI.strokeW)/5;
+		ampSlider.resize(UI.strokeW/2.+w*2, UI.strokeW/2., w, p.height-UI.strokeW, p.width/12);
+        pitchSlider.resize(UI.strokeW/2.+w*4, UI.strokeW/2., w, p.height-UI.strokeW, p.width/12);
+        arpToggle.resize(UI.strokeW/2., UI.strokeW/2., p.width/5, p.height-UI.strokeW);
+	}
 }
 
 class Toggle {
@@ -324,6 +339,13 @@ class Toggle {
         this.h = h;
         console.log('toggle', on);
         this.on = on;
+    }
+
+    resize(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
     }
 
     draw() {
@@ -349,6 +371,8 @@ class Toggle {
         
         //
     }
+    
+
 
     checkIn(x, y) {
         if (x >= this.x && x <= this.x+this.w && y >=this.y && y <= this.y+this.h) {
@@ -379,6 +403,16 @@ class Slider {
         this.h = h;
         this.h2 = h2;
         this.moveh = 0;
+    }
+
+    resize(x, y, w, h, h2) {
+        this.now = this.pos2Val(this.moveh);
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.h2 = h2;
+        this.moveh = this.val2Pos(this.now);
     }
 
     draw(fillColor, fillColorIn) {

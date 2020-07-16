@@ -1,11 +1,20 @@
+#content {
+    margin-left: 4.66%;
+    margin-right: 4.66%;
+}
+
+#waveContainer {
+    padding: 0px;
+}
+
 #waveContainer canvas {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+    margin-left: 3%; /*(100/4 - 100/6)/2*/
+    margin-right: 3%;
 }
 
 #controlContainer canvas {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 #controlContainer {

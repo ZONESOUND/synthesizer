@@ -8,4 +8,5 @@ export const COLOR = {
 
 export const UI = {
     strokeW: 2,
+    widthDiv: 6
 }
