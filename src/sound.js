@@ -47,6 +47,10 @@ function initSound() {
     
 }
 
+function changeArp(arp) {
+    keyboard.arpChange(arp);
+}
+
 // $('#wave-type').change(function() {
 //     console.log($("#wave-type option:selected").attr('id'));
 //     oscillator.type = $("#wave-type option:selected").attr('id');
@@ -79,7 +83,7 @@ $('#amplitude').change(function() {
 })
 
 $('#amplitude').on('input', ()=>{
-    gain.gain.linearRampToValueAtTime($('#amplitude').val(), context.currentTime+0.01);
+    changeAmp($('#amplitude').val());
 })
 
 $('#pitch').change(function() {
@@ -88,12 +92,10 @@ $('#pitch').change(function() {
     //oscillator.detune.setValueAtTime($(this).val(), context.currentTime);
 })
 
-$('#pitch').on('input', pitchChange);
+$('#pitch').on('input', ()=> {changePitch($('#pitch').val());
+});
 
-function pitchChange() {
-    //console.log($('#pitch').val());
-    keyboard.set('oscillator.detune', $('#pitch').val());
-}
+
 
 function triggerPlay() {
     envelope.triggerStart();
@@ -121,6 +123,13 @@ function changeFilter(filterFreq, Q) {
     //console.log(filter.frequency);
 }
 
+function changeAmp(amp) {
+    gain.gain.linearRampToValueAtTime(amp, context.currentTime+0.01);
+}
+
+function changePitch(p) {
+    keyboard.set('oscillator.detune', p);
+}
 
 
-export {initWebaudio, initSound, triggerPlay, triggerStop, changeFilter};
+export {initWebaudio, initSound, triggerPlay, triggerStop, changeFilter, changeAmp, changePitch, changeArp};

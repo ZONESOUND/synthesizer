@@ -19,7 +19,7 @@ export class Keyboard {
         this.arp = false;
         this.arpIntT = 500;
         this.setKeyArp();
-        $('#arp').change(this.arpChange.bind(this));
+        //$('#arp').change(this.arpChange.bind(this));
         resizeKeyboard();
     }
 
@@ -35,8 +35,8 @@ export class Keyboard {
         }
     }
 
-    arpChange() {
-        this.arp = !this.arp;
+    arpChange(arp = !this.arp) {
+        this.arp = arp;
         if (this.arp) {
             
             this.arpSet = new Set();

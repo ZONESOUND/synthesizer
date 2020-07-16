@@ -1,4 +1,5 @@
 import './waveUI.css';
+import {COLOR, UI} from './color';
 export let waveType = '';
 
 console.log('in wave.js');
@@ -48,7 +49,8 @@ class WaveTemplate {
 		this.name = '';
 		this.p = p;
 		this.setp5();
-		this.bgcolor = 0;
+		this.bgcolor = [255, 255, 255];
+		this.strokecolor = [255, 255, 255];
 		this.initDraw();
 		this.clickCallback = clickCallback;
 	}
@@ -81,13 +83,18 @@ class WaveTemplate {
 
 	draw() {
 		//console.log(this.isPlay);
-		this.p.background(255);
+		this.p.strokeWeight(UI.strokeW);
+		this.p.stroke(this.strokecolor[0], this.strokecolor[1], this.strokecolor[2]);
+		this.p.background(this.bgcolor[0], this.bgcolor[1], this.bgcolor[2]);
+		//this.p.fill(this.bgcolor[0], this.bgcolor[1], this.bgcolor[2]);
+		//this.p.rect(0, 0, this.p.width, this.p.height);
+
 		if (this.isPlay) {
 			if (this.moving) this.calcWave();
 			this.renderWave();
 		}
 		else {
-			this.p.stroke(0);
+			//this.p.stroke(0);
 			this.p.line(0, this.width/2, this.width, this.width/2);
 		}
 	}
@@ -104,7 +111,7 @@ class WaveTemplate {
 	}
 
 	renderWave() {
-		this.p.stroke(0);
+		//this.p.stroke(0);
 		let px = 0;
 		let py = this.width / 2 + this.yvalues[0]
 
@@ -125,7 +132,7 @@ class SineWave extends WaveTemplate {
 		super(p, clickCallback);
 		console.log('sine cons');
 		this.name = 'sine';
-		
+		this.bgcolor = COLOR.red;
 		this.calcWave();
 		this.moving = true;
 	}
@@ -153,6 +160,7 @@ class TriWave extends WaveTemplate {
 	constructor(p, clickCallback) {
 		super(p, clickCallback);
 		this.name = 'triangle';
+		this.bgcolor = COLOR.blue;
 		
 		this.crop = (this.w/this.wavenum)/4.;
 		this.calcWave();
@@ -193,7 +201,7 @@ class SquWave extends WaveTemplate {
 	constructor(p, clickCallback) {
 		super(p, clickCallback);
 		this.name = 'square';
-		
+		this.bgcolor = COLOR.yellow;
 		//this.crop = (this.w/this.wavenum)/4.;
 		this.calcWave();
 		this.moving = true;
@@ -231,7 +239,7 @@ class SawWave extends WaveTemplate {
 	constructor(p, clickCallback) {
 		super(p, clickCallback);
 		this.name = 'sawtooth';
-
+		this.bgcolor = COLOR.cyan;
 		this.calcWave();
 		this.moving = true;
 		
