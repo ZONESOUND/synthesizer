@@ -9,6 +9,7 @@ export let adsrConfig = {
 }
 
 let adsr = function(p) {
+    let canvas;
     let widthSec = 4;
     let attack, decay, release;
     let sustainTime = 0.5;
@@ -17,6 +18,10 @@ let adsr = function(p) {
         attack = new Draggable(p);
         decay = new Draggable(p);
         release = new Draggable(p);
+        
+        // canvas.touchStarted(mousePressed);
+        // canvas.mousePressed(mousePressed);
+        // canvas.mouseDragged(mouseDragged);
     }
 
     p.draw = function() {
@@ -46,7 +51,9 @@ let adsr = function(p) {
         release.draw(releaseX, p.height, w);
     }
 
-    p.mousePressed = function() {
+    
+
+    let mousePressed = function() {
         if (attack.checkIn(p.mouseX, p.mouseY, 30)) {
             attack.drag = true;
         } else {
@@ -66,7 +73,7 @@ let adsr = function(p) {
         }
     }
 
-    p.mouseDragged = function() {
+    let mouseDragged = function() {
         if (attack.drag) {
             adsrConfig.attackTime = minmax(width2time(p.mouseX), 0, widthSec-adsrConfig.decayTime-sustainTime-adsrConfig.releaseTime);
             adsrConfig.attackValue = minmax(height2val(p.mouseY), 0, 1);
@@ -85,6 +92,9 @@ let adsr = function(p) {
         //console.log(p.mouseX, p.mouseY, width2time(p.mouseX));
     }
 
+    p.touchStarted = mousePressed;
+    p.mousePressed = mousePressed;
+    p.mouseDragged = mouseDragged;
 
     let time2width = function(time) {
         return time / widthSec * p.width;
@@ -116,6 +126,10 @@ let filter = function(p) {
         p.background(0);
         //change to only drag canvas
         //canvas.mouseDragged(mouseDragged);
+        canvas.touchStarted(()=>{
+            press = true;})
+        canvas.touchEnded(()=>{
+            press = false;})
         canvas.mousePressed(()=>{
             press = true;});
         canvas.mouseOut(()=>{
@@ -202,8 +216,7 @@ let otherfunc = function(p) {
         pitchSlider.draw([255, 255, 255], [0, 0, 0]);
         arpToggle.draw();
     }
-
-    p.mousePressed = function() {
+    let mousePressed = function() {
         if (ampSlider.mousePressed()) {
             changeAmp(ampSlider.getVal());
         }
@@ -215,7 +228,7 @@ let otherfunc = function(p) {
         }
     }
 
-    p.mouseOut = function() {
+    let mouseOut = function() {
         ampSlider.mouseOut();
         pitchSlider.mouseOut();
     }
@@ -228,7 +241,18 @@ let otherfunc = function(p) {
             changePitch(pitchSlider.getVal());
         }
     }
-    
+    p.touchStarted = function() {
+        if (ampSlider.mousePressed()) {
+            changeAmp(ampSlider.getVal());
+        }
+        if (pitchSlider.mousePressed()) {
+            changePitch(pitchSlider.getVal());
+        }
+    }
+    //p.touchStarted = mousePressed;
+    p.mousePressed = mousePressed;
+    p.mouseOut = mouseOut;
+    p.touchEnded = mouseOut;
 }
 
 class Toggle {
@@ -300,7 +324,7 @@ class Slider {
     draw(fillColor, fillColorIn) {
         this.p.fill(fillColor[0], fillColor[1], fillColor[2]);
         this.p.rect(this.x, this.y, this.w, this.h);
-        this.p.stroke(fillColorIn[0], fillColorIn[1], fillColorIn[2]);
+        //this.p.stroke(fillColor[0], fillColor[1], fillColor[2]);
         this.p.fill(fillColorIn[0], fillColorIn[1], fillColorIn[2]);
         this.p.rect(this.x, this.y+this.moveh, this.w, this.h2);
     }

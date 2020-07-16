@@ -79,6 +79,7 @@ class WaveTemplate {
 		this.canvas = this.p.createCanvas(this.width, this.width);
 		this.p.background(this.bgcolor);
 		this.canvas.mouseClicked(this.mouseClicked.bind(this));
+		this.canvas.touchStarted(this.mouseClicked.bind(this));
 	}
 
 	draw() {
@@ -98,6 +99,7 @@ class WaveTemplate {
 			this.p.line(0, this.width/2, this.width, this.width/2);
 		}
 	}
+
 
 	mouseClicked() {
 		if (this.clickCallback) this.clickCallback(this.isPlay ? '' : this.name);

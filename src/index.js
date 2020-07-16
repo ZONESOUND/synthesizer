@@ -13,3 +13,10 @@ if (initWebaudio()) {
         $('#content').attr('hidden', false);
     });
 }
+
+function noScroll() {
+    window.scrollTo(0, 0);
+}
+  
+// add listener to disable scroll
+window.addEventListener('scroll', noScroll);

@@ -102,6 +102,8 @@ class Key {
         //console.log(freq, '#key-'+ind);
         this.freq = freq;
         this.ind = ind;
+        $('#key-'+ind).bind('touchstart', this.mousedown.bind(this));
+        $('#key-'+ind).bind('touchend', this.mouseup.bind(this));
         $('#key-'+ind).mousedown(this.mousedown.bind(this));
         $('#key-'+ind).mouseup(this.mouseup.bind(this));
         $('#key-'+ind).mouseout(this.mouseup.bind(this));
