@@ -2,7 +2,6 @@
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var styleComponent = require("babel-plugin-styled-components")
 
 module.exports = {
 	devtool: 'cheap-module-eval-source-map',

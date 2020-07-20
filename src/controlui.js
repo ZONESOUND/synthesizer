@@ -249,6 +249,7 @@ let otherfunc = function(p) {
     let ampSlider;
     let pitchSlider;
     let arpToggle;
+    let touch = false;
     let canvas;
     let press = false;
     p.setup = function() {
@@ -272,7 +273,25 @@ let otherfunc = function(p) {
         pitchSlider.draw([255, 255, 255], [0, 0, 0]);
         arpToggle.draw();
     }
+
+    let touchStarted = function() {
+        if (ampSlider.touchStarted()) {
+            changeAmp(ampSlider.getVal());
+            return false;
+        }
+        if (pitchSlider.touchStarted()) {
+            changePitch(pitchSlider.getVal());
+            return false;
+        }
+        if (arpToggle.touchStarted()) {
+            changeArp(arpToggle.on);
+            return false;
+        }
+        
+    }
+
     let mousePressed = function() {
+        if (touch) return;
         if (ampSlider.mousePressed()) {
             changeAmp(ampSlider.getVal());
         }
@@ -298,14 +317,7 @@ let otherfunc = function(p) {
         }
     }
 
-    p.touchStarted = function() {
-        if (ampSlider.touchStarted()) {
-            changeAmp(ampSlider.getVal());
-        }
-        if (pitchSlider.touchStarted()) {
-            changePitch(pitchSlider.getVal());
-        }
-    }
+    
 
     p.touchMoved = function() {
         if (ampSlider.touchMoved()) {
@@ -316,7 +328,7 @@ let otherfunc = function(p) {
         }
     }
 
-    //p.touchStarted = touchStarted;
+    p.touchStarted = touchStarted;
     p.mousePressed = mousePressed;
     p.mouseOut = mouseOut;
     p.touchEnded = mouseOut;
@@ -389,6 +401,17 @@ class Toggle {
         }
         return false;
     };
+
+    touchStarted() {
+        for (var i=0; i<this.p.touches.length; i++) {
+            if (this.checkIn(this.p.touches[i].x, this.p.touches[i].y)) {
+                this.on = !this.on;
+                this.draw();
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 class Slider {
