@@ -365,7 +365,7 @@ class Toggle {
         this.p.fill(255);
         this.p.rect(this.x, this.y, this.w, this.h);
         this.p.textAlign(this.p.CENTER, this.p.CENTER);
-        this.p.textSize(15);
+        this.p.textSize(this.w/4);
         this.p.noStroke();
         if (this.on) {
             this.p.stroke(COLOR.cyan[0],COLOR.cyan[1],COLOR.cyan[2]);
