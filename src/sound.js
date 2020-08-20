@@ -137,6 +137,7 @@ function changePitch(p) {
 }
 
 function record() {
+    chunks = [];
     console.log('record!!!');
     compressor.connect(dest);
     mediaRecorder.start();
