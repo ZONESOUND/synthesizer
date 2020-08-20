@@ -6,7 +6,8 @@ let context;
 let oscillator, envelope, filter, gain, compressor;
 let keyboard;
 var dest, mediaRecorder, chunks=[];
-
+var audio = document.getElementById("audio");
+var sourceElement;
 function initWebaudio() {
     try {
         // Fix up for prefixing
@@ -25,9 +26,14 @@ function initWebaudio() {
         
         mediaRecorder.onstop = function(evt) {
             // Make blob out of our blobs, and open it.
-            var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
-            console.log(document.querySelector("audio"));
-            document.querySelector("audio").src = URL.createObjectURL(blob);
+            //var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+            //var blob = new Blob(chunks, {type: 'audio/mp3'});
+            const audioBlob = new Blob(chunks, { 'type' : 'audio/wav' });
+            let audioObjectURL = window.URL.createObjectURL(audioBlob);
+            sourceElement = document.createElement('source');
+            audio.appendChild(sourceElement);
+            sourceElement.src = audioObjectURL;
+            sourceElement.type = 'audio/wav';
         };
         //AudioNode.
     }
@@ -159,13 +165,31 @@ $("#rec").click(function() {
         $(this).attr('state', 'rec');
     }
 });
-  
+
+audio.onended = function() {
+    console.log('hh');
+    $("#play").addClass('fa-play');
+    $("#play").removeClass('fa-stop');
+    $("#play").attr('state', 'play');
+};
 $("#play").click(function() {
     if ($("#rec").attr('state') == "stop") return;
+    
+    if ($(this).attr('state') == 'play') {
+        if (!sourceElement) return;
+        console.log(audio);
+        audio.currentTime = 0;
+        audio.play();
+        //sourceElement.play();
+        
+        $(this).attr('state', 'stop');
+    }
+    else {
+        audio.pause();
+        $(this).attr('state', 'play');
+    }
     $(this).toggleClass('fa-play');
     $(this).toggleClass('fa-stop');
-    if ($(this).attr('state') == 'play') $(this).attr('state', 'stop');
-    else $(this).attr('state', 'play');
 });
 
 export {initWebaudio, initSound, triggerPlay, triggerStop, changeFilter, changeAmp, changePitch, changeArp};
