@@ -61,3 +61,4 @@ window.onload = () => {
       lastTouchEnd = now;
     }, false);
 }
+

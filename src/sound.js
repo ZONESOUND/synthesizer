@@ -5,6 +5,7 @@ import * as Synth from './soundusage';
 let context;
 let oscillator, envelope, filter, gain, compressor;
 let keyboard;
+var dest, mediaRecorder, chunks=[];
 
 function initWebaudio() {
     try {
@@ -13,6 +14,21 @@ function initWebaudio() {
         //window.AudioContext.prototype.createEnvelope = createEnvelope;
         //context = new AudioContext();
         context = Synth.initContext();
+        dest = context.createMediaStreamDestination();
+        console.log(dest);
+        mediaRecorder = new MediaRecorder(dest.stream);
+        mediaRecorder.ondataavailable = function(evt) {
+            // push each chunk (blobs) in an array
+            console.log(chunks);
+            chunks.push(evt.data);
+        };
+        
+        mediaRecorder.onstop = function(evt) {
+            // Make blob out of our blobs, and open it.
+            var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+            console.log(document.querySelector("audio"));
+            document.querySelector("audio").src = URL.createObjectURL(blob);
+        };
         //AudioNode.
     }
     catch(e) {
@@ -114,5 +130,42 @@ function changePitch(p) {
     keyboard.set('oscillator.detune', p);
 }
 
+function record() {
+    console.log('record!!!');
+    compressor.connect(dest);
+    mediaRecorder.start();
+}
+
+function stopRec() {
+    console.log('stop!!!');
+    mediaRecorder.stop();
+    compressor.disconnect(mediaRecorder);
+    compressor.connect(context.destination);
+}
+
+
+
+$("#rec").click(function() {
+    if ($("#play").attr('state') == "stop") return;
+    $(this).toggleClass('fa-circle');
+    $(this).toggleClass('fa-stop');
+    //console.log($(this).attr('state'));
+    if ($(this).attr('state') == 'rec') {
+        record();
+        $(this).attr('state', 'stop');
+    }
+    else {
+        stopRec();
+        $(this).attr('state', 'rec');
+    }
+});
+  
+$("#play").click(function() {
+    if ($("#rec").attr('state') == "stop") return;
+    $(this).toggleClass('fa-play');
+    $(this).toggleClass('fa-stop');
+    if ($(this).attr('state') == 'play') $(this).attr('state', 'stop');
+    else $(this).attr('state', 'play');
+});
 
 export {initWebaudio, initSound, triggerPlay, triggerStop, changeFilter, changeAmp, changePitch, changeArp};

@@ -87,3 +87,9 @@ body {
     margin-left: 3%;
     margin-right: 3%;
 }
+
+#rec {
+    margin-left: 20px;
+    margin-right: 10px;
+    color: red;
+}
