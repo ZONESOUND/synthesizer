@@ -44,7 +44,7 @@ if( navigator.userAgent.length && /iPhone|iPad|iPod/i.test( navigator.userAgent 
 // }
   
 // // add listener to disable scroll
-// window.addEventListener('scroll', noScroll);
+//window.addEventListener('scroll', noScroll);
 window.onload = () => {
     document.addEventListener('touchstart', (event) => {
       if (event.touches.length > 1) {
@@ -53,11 +53,19 @@ window.onload = () => {
     }, { passive: false });
     
     let lastTouchEnd = 0;
+    let lastTouchEnd2 = 0;
     document.addEventListener('touchend', (event) => {
       const now = (new Date()).getTime();
       if (now - lastTouchEnd <= 300) {
         event.preventDefault();
       }
       lastTouchEnd = now;
+    }, false);
+    document.addEventListener('touchstart', (event) => {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd2 <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd2 = now;
     }, false);
 }
